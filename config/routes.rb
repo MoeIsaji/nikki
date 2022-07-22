@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   # devise関連
   # 顧客用
   # URL /customers/sign_in ...
@@ -16,15 +17,17 @@ Rails.application.routes.draw do
 
   # viewページ
   root to: "homes#top"
-
   scope module: :public do
-    resources :my_pages, only:[:show, :update, :edit, :bye, :byebye]
-    resources :articles, only:[:index,:show]
-    resources :my_articles, only:[:show, :open_close, :destroy, :new, :create, :update]
-    resources :likes, only:[:index]
-    resources :follows, only:[:index]
-    resources :followers, only:[:index]
-    resources :serch_articles, only:[:index]
+    resources :articles, only:[:index,:show,:edit,:create,:destroy,:update] do
+      resources :comments, only: [:create, :destroy]
+      resource :likes, only: [:create, :destroy]
+      end
+    resources :customers, only:[:index,:show,:edit,:update] do
+      resource :relationships, only: [:create, :destroy]
+      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'followers' => 'relationships#followers', as: 'followers'
+      end
+    get '/search', to: 'searche_articles#search'
   end
 
   namespace :admin do

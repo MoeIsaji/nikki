@@ -1,4 +1,5 @@
 class Comment < ApplicationRecord
- has_many :likes, dependent: :destroy
- has_many :articles, dependent: :destroy
+ belongs_to :customer
+ belongs_to :article
+ validates :comment, presence: true
 end
