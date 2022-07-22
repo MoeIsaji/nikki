@@ -1,0 +1,10 @@
+<div class='container'>
+  <div class='row'>
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+  		<h1>編集する</h1>
+    	<%= render 'layouts/errors', obj: @article %>
+  		<%= render 'form', article: @article %>
+  		<%= link_to 'Show', @article, class: "article_#{@article.id}" %> |
+  		<%= link_to 'Back', articles_path, class: "戻る" %>
+  </div>
+</div>
