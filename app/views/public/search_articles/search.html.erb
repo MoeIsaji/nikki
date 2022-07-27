@@ -1,7 +1,7 @@
-<% if @model == 'user' %>
-	<h3>CUstomers search for "<%= @content %>"</h3>
-  <%= render 'customers/index', customers: @records %>
-<% elsif @model == 'article' %>
-	<h3>Articles search for "<%= @content %>"</h3>
-  <%= render 'articles/index', articles: @records %>
+<% if @model == 'customer' %>
+	<h3>検索結果 "<%= @content %>"</h3>
+  <%= render 'public/customers/index', customers: @records %>
+<% elsif @model == 'articles' %>
+	<h3>検索結果 "<%= @content %>"</h3>
+  <%= render 'public/articles/index', articles: @records %>
 <% end %>

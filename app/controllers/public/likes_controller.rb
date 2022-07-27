@@ -13,3 +13,9 @@ class Public::LikesController < ApplicationController
     render 'replace_btn'
   end
 end
+
+
+  private
+  def likes_params
+    @article = Article.find(params[:article_id])
+  end

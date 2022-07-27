@@ -13,7 +13,7 @@ class Public::RelationshipsController < ApplicationController
   end
 
   def followings
-    customer = Customer.find(params[:cutsomer_id])
+    customer = Customer.find(params[:customer_id])
 		@customers = customer.followings
   end
 

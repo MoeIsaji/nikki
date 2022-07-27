@@ -1,41 +1,37 @@
 <div class='container'>
   <div class='row'>
     <div class='col-md-3'>
-      <h2>ユーザー情報</h2>
       <%= render 'public/customers/info', customer: @article.customer %>
-      <h2 class="mt-3">投稿</h2>
-      <%= render 'form', article: Article.new %>
     </div>
     <div class='col-md-8 offset-md-1'>
-  		<h2>詳細</h2>
-  		<table class='table'>
-  		  <tr>
-          <td><%= link_to(@article.customer) do %>
-            <%= image_tag @article.customer.get_profile_image, size:"100x100" %><br>
-            <%= @article.customer.user_name %>
-            <% end %>
-          </td>
-          <td><%= link_to @article.title, @article %></td>
-          <td><%= @article.body %></td>
-          <td class=<%= "like-" + @article.id.to_s %> >
-            <%= render "public/likes/btn", article: @article %>
-          </td>
-          <td class="comments-counter">
-            <%= render "public/comments/counter", article: @article %>
-          </td>
-          <% if @article.customer == current_customer %>
-            <td><%= link_to 'Edit', edit_article_path(@article), class: "btn btn-sm btn-success edit_article_#{@article.id}" %></td>
-            <td><%= link_to 'Destroy', @article, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_article_#{@article.id}" %></td>
-          <% end %>
-        </tr>
-      </table>
-      
+      <h2>  <%= image_tag @article.customer.get_profile_image, size:"40x40", :class => "rounded-circle" %> <%= @article.customer.user_name %>さんの日記</h2>
+      <div class="card">
+         <h4 class="card-header"><%= link_to @article.title, @article %></h4>
+          <div class="card-body">
+           <h6 class="card-subtitle mb-2 text-muted"><%= @article.created_at.strftime('%Y/%m/%d') %></h6>
+           <td><%= @article.body %></td>
+           <br>
+           <td class=<%= "like-" + @article.id.to_s %> >
+            <%= render "public/likes/btn", article: @article %></td>
+           <td class="comments-counter">
+            <%= render "public/comments/counter", article: @article %></td>
+         </div>
+      </div>
+      <br>
+      <% if @article.customer == current_customer %>
+         <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+          <button type="button" class="btn btn-outline-secondary"><%= link_to '編集する', edit_article_path(@article), class: " edit_article_#{@article.id}" %></botton>
+          <button type="button" class="btn btn-outline-secondary"><%= link_to '削除する', @article, method: :delete, data: { confirm: '本当に消しますか？' }, class: " destroy_article_#{@article.id}" %></botton>
+         </div>
+      <% end %>
+    
       <div class="comments-index">
+        <br>
         <%= render "public/comments/index", article: @article %>
       </div>
-      
+
       <%= render "public/comments/form", article: @article, comment: @comment %>
-      
+
     </div>
   </div>
 </div>

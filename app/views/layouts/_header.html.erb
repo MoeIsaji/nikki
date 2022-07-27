@@ -1,52 +1,59 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-md navbar-light" style="background-color: #f5b1aa;">
     <div class="container">
-      <a class="navbar-brand" href="/"><span>ZOO</span></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav">
         <% if customer_signed_in? %>
-          <li>
-            <%= link_to customer_path(current_customer),class: 'nav-link text-light' do %>
-              <i class="fas fa-home"></i> Home
+        <div class="d-flex flex-column ml-auto flex-right">
+        <div class="logo_area w-50 text-left">
+           <%= link_to customer_path(current_customer) do %><%= image_tag 'Nikki_logo-removebg-preview' , class: "logo w-50 float-left" %><% end %>
+        </div>
+        </div>
+        <div class="float-left">
+           <%= render 'public/search_articles/form' %>
+        </div>
+           <li>
+            <%= link_to customer_path(current_customer),class: 'nav-link text-light　style="background-color: #808080"'  do %>
+              <i class="fas fa-home"></i> <%= current_customer.user_name %> さんの日記
+            <% end %>
+          </li>
+           <li>
+            <%= link_to new_article_path(current_customer),class: 'nav-link text-light　style="background-color: #808080"'  do %>
+              <i class="fas fa-home"></i> 投稿する
             <% end %>
           </li>
           <li>
-            <%=  link_to customers_path,class: 'nav-link text-light' do %>
-              <i class="fas fa-users"></i> Customers
+            <%=  link_to articles_path ,class: 'nav-link text-light　style="background-color: #808080"'  do %>
+              <i class="fas fa-book-open"></i> みんなの日記
             <% end %>
           </li>
           <li>
-            <%=  link_to articles_path ,class: 'nav-link text-light' do %>
-              <i class="fas fa-book-open"></i> Articles
+            <%= link_to destroy_customer_session_path, method: :delete,class: 'nav-link text-light　style="background-color: #808080"'  do %>
+              <i class="fas fa-sign-out-alt"></i> ログアウト
             <% end %>
           </li>
-          <li>
-            <%= link_to destroy_customer_session_path, method: :delete,class: 'nav-link text-light' do %>
-              <i class="fas fa-sign-out-alt"></i> logout
-            <% end %>
+        <% elsif admin_signed_in? %>
+        <!-- 管理者がログインしている時 -->
+          <li class="nav-item m-3">
+            <%= link_to "会員一覧", admin_customers_path, class:  "btn btn-light" %>
+          </li>
+          <li class="nav-item m-3">
+            <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-light" %>
           </li>
         <% else %>
           <li>
-            <%= link_to root_path,class: 'nav-link text-light' do %>
-              <i class="fas fa-home"></i> Home
+            <%= link_to root_path, class: 'nav-link text-light　style="background-color: #808080"' do %>
+              <i class="fas fa-home"></i> Nikkiについて
             <% end %>
           </li>
           <li>
-            <%= link_to home_path,class: 'nav-link text-light' do %>
-              <i class="fas fa-link"></i> About
+            <%= link_to new_customer_registration_path, class: 'nav-link text-light　style="background-color: #808080"' do %>
+              <i class="fas fa-user-plus"></i> 新規登録
             <% end %>
           </li>
           <li>
-            <%= link_to new_cusutomer_registration_path,class: 'nav-link text-light' do %>
-              <i class="fas fa-user-plus"></i> sign up
-            <% end %>
-          </li>
-          <li>
-            <%= link_to new_customer_session_path ,class: 'nav-link text-light' do %>
-              <i class="fas fa-sign-in-alt"></i> login
+            <%= link_to new_customer_session_path , class: 'nav-link text-light　style="background-color: #808080"' do %>
+              <i class="fas fa-sign-in-alt"></i> ログイン
             <% end %>
           </li>
         <% end %>
