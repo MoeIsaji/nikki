@@ -1,2 +1,27 @@
-<h1>Admin::Customers#edit</h1>
-<p>Find me in app/views/admin/customers/edit.html.erb</p>
+<div class="container">
+ <h4 style="margin-top:30px;"><%= @customer.user_name %>さんの会員情報編集</h4>
+   <%= form_with model: @customer, url: admin_customer_path(@customer.id), class: "w-100" do |f| %>
+ <table>
+   <tr>
+     <td>会員ID</td>
+     <td class= "col-sm-8"><%= @customer.id %></td>
+   </tr>
+   <tr>
+     <td>名前</td>
+     <td><%= f.text_field :user_name %></td>
+   </tr>
+     <td>メールアドレス</td>
+     <td><%= f.text_field :email %></td>
+   </tr>
+   <tr>
+     <td>会員ステータス</td>
+      <% if @customer.is_active == true %>
+    <td class="col-sm-6">会員</td>
+      <% else %>
+    <td class="col-sm-6">退会</td>
+      <% end %>
+  </tr>
+ </table>
+     <%= link_to '退会させる', admin_customer_path(@customer), method: :delete, data: { confirm: '本当に退会させますか？' }, class: "btn btn-sm btn-danger destroy_customer_#{@customer.id}" %>
+ <% end %>
+</div>

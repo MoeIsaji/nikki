@@ -7,8 +7,12 @@ class Public::ArticlesController < ApplicationController
     @comment = Comment.new
   end
 
+  def new
+    @article = Article.new
+  end
+
   def index
-    @articles = Article.all
+    @articles = Article.all.order(created_at: :desc)
     @article = Article.new
   end
 
