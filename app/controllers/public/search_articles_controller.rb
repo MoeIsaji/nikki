@@ -5,10 +5,10 @@ class Public::SearchArticlesController < ApplicationController
 		@model = params[:model]
 		@content = params[:content]
 		@method = params[:method]
-		if @model == 'customers'
-			@records = Customer.search_articles_for(@content, @method)
+		if @model == 'customer'
+			@records = Customer.search_for(@content, @method)
 		else
-			@records = Article.search_articles_for(@content, @method)
+			@records = Article.search_for(@content, @method)
 		end
 	end
 end

@@ -1,7 +1,7 @@
 class Public::CommentsController < ApplicationController
   def create
     article = Article.find(params[:article_id])
-    @comment = current_customer.article_comments.new(comment_params)
+    @comment = current_customer.comments.new(comment_params)
     @comment.article_id = article.id
     @comment.save
   end

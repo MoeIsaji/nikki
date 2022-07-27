@@ -5,7 +5,7 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :relationships, dependent: :destroy
-  has_many :articls
+  has_many :articles
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
   
@@ -17,11 +17,11 @@ class Customer < ApplicationRecord
   # 自分がフォローする（与フォロー）側の関係性
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   # 与フォロー関係を通じて参照→自分がフォローしている人
-  has_many :follows, through: :relationships, source: :followed
+  has_many :followings, through: :relationships, source: :followed
   
   has_one_attached :profile_image
 
-  validates :user_name, length: { minimum: 2, maximum: 20 }, uniqueness: true
+  validates :user_name, length: { maximum: 10 }
   validates :introduction, length: { maximum: 50 }
   
   
@@ -33,7 +33,7 @@ class Customer < ApplicationRecord
     relationships.create(followed_id: customer.id)
   end
 
-  def unfollow(custoemer)
+  def unfollow(customer)
     relationships.find_by(followed_id: customer.id).destroy
   end
 

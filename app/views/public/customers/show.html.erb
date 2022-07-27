@@ -1,14 +1,14 @@
 <div class='container px-5 px-sm-0'>
   <div class='row'>
     <div class='col-md-3'>
-      <h2>ユーザー情報</h2>
       <%= render 'info', customer: @customer %>
-      <h2 class="mt-3">投稿</h2>
-      <%= render 'public/ariticles/form', article: @article %>
+       <td><%= link_to likes_customers_path, class: 'nav-link text-primary' do %>
+       <button type="button" class="btn" style="background-color: #fdeff2;"><%= @customer.user_name %> さんがいいねした記事</td>  
+       <% end %>
     </div>
     <div class='col-md-8 offset-md-1'>
-      <h2>投稿</h2>
-      <%= render 'public/ariticles/index', articles: @articles %>
+      <h2><%= @customer.user_name %>さんの日記</h2>
+      <%= render 'public/articles/index', articles: @articles %>
     </div>
   </div>
 </div>

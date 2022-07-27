@@ -4,8 +4,13 @@ class Public::CustomersController < ApplicationController
 
  def show
     @customer = Customer.find(params[:id])
-    @customer = Customer.new
-    @customers = @customer.articles
+    @article = Article.new
+    @articles = @customer.articles
+ end
+
+ def likes
+    likes = Like.where(customer_id: current_customer.id).pluck(:article_id)
+    @like_list = Article.find(likes)
  end
 
  def index
@@ -13,7 +18,15 @@ class Public::CustomersController < ApplicationController
     @article = Article.new
  end
 
+
+ def destroy
+    @customer = Customer.find(params[:id])
+    @customer.destroy
+    redirect_to root_path
+ end
+
   def edit
+     @customer = current_customer
   end
 
   def update
