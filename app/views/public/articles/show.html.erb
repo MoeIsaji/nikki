@@ -11,10 +11,12 @@
            <h6 class="card-subtitle mb-2 text-muted"><%= @article.created_at.strftime('%Y/%m/%d') %></h6>
            <td><%= @article.body %></td>
            <br>
-           <td class=<%= "like-" + @article.id.to_s %> >
-            <%= render "public/likes/btn", article: @article %></td>
-           <td class="comments-counter">
-            <%= render "public/comments/counter", article: @article %></td>
+           <div class="d-flex">
+             <div class="like-<%= @article.id %>">
+              <%= render "public/likes/btn", article: @article %></div>
+             <div class="comments-counter">
+              <%= render "public/comments/counter", article: @article %></div>
+           </div>
          </div>
       </div>
       <br>
@@ -24,7 +26,7 @@
           <button type="button" class="btn btn-outline-secondary"><%= link_to '削除する', @article, method: :delete, data: { confirm: '本当に消しますか？' }, class: " destroy_article_#{@article.id}" %></botton>
          </div>
       <% end %>
-    
+
       <div class="comments-index">
         <br>
         <%= render "public/comments/index", article: @article %>
