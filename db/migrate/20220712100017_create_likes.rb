@@ -3,8 +3,8 @@ class CreateLikes < ActiveRecord::Migration[6.1]
     create_table :likes do |t|
 
       t.timestamps
-      t.integer :article_id, null: false, default: ""
-      t.integer :customer_id, null: false, default: ""
+      t.integer :article_id, null: false
+      t.integer :customer_id, null: false
     end
   end
 end
