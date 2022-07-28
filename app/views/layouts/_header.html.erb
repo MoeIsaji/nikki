@@ -6,7 +6,7 @@
         <% if customer_signed_in? %>
         <div class="d-flex flex-column ml-auto flex-right">
         <div class="logo_area w-50 text-left">
-           <%= link_to customer_path(current_customer) do %><%= image_tag 'Nikki_logo-removebg-preview.jpg' , class: "logo w-50 float-left" %><% end %>
+           <%= link_to customer_path(current_customer) do %><%= image_tag asset_path("Nikki_logo-removebg-preview.png"), class: "logo w-50 float-left" %><% end %>
         </div>
         </div>
         <div class="float-left">
