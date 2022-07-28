@@ -1,7 +1,18 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">
-      <h2>新規登録てスト</h2>
-   </div>
+    <div class='mx-auto'>
+       <%= image_tag asset_path("Nikki_logo-removebg-preview.png") %>
+       </img>
+          <p>思ったこと、考えたこと、気軽に書いてみようpart2222</p>
+      <div class="btn-wrapper col-10 mx-auto">
+        <div class="row">
+
+          <%= link_to "ログインする",new_customer_session_path, class: "btn btn-sm btn-block mb-3 sign_in" ,style:"background-color: #badcad" %>
+        </div>
+        <div class="row">
+          <%= link_to "新規登録する",new_customer_registration_path, class: "btn  btn-sm btn-block sign_up" ,style:"background-color: #badcad" %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
