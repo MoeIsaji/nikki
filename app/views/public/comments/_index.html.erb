@@ -5,11 +5,11 @@
         
         <td>
           <%= link_to customer_path(comment.customer) do %>
-            <%= image_tag comment.customer.get_profile_image, size: "100x100" %><br>
+            <%= image_tag comment.customer.get_profile_image, size: "75x75", :class => "rounded-circle" %><br>
             <%= comment.customer.user_name %>
           <% end %>
         </td>
-        <td><%= comment.comment %></td>
+        <td><div class="m-5  d-inline-block"><%= comment.comment %></td>
         <td>
           <% if comment.customer == current_customer %>
             <%= link_to "Destroy", article_comment_path(article, comment), method: :delete, class: "btn btn-danger pull-right", remote: true %>
