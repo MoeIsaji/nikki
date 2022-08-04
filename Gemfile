@@ -64,4 +64,9 @@ gem 'pry-byebug', group: :development
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
+
+gem "net-smtp"
+gem "net-pop"
+gem "net-imap"
+
 end
